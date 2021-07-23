@@ -1,0 +1,120 @@
+@import "variables";
+
+.invoiceslist {
+  .invoice-container {
+    cursor: pointer;
+    height: 9rem;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: var(--elbg);
+    margin-top: 1rem;
+    border-radius: 7px;
+    @media (min-width: 768px) {
+      & {
+        display: flex;
+        height: 5rem;
+        position: relative;
+      }
+    }
+    &:last-child {
+      margin-bottom: 7rem;
+    }
+    .half {
+      display: flex;
+      justify-content: space-between;
+      height: 50%;
+      @media (min-width: 768px) {
+        & {
+          height: 100%;
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+      p {
+        color: var(--pcolor);
+        font-size: 0.78rem;
+      }
+    }
+    .head {
+      padding-top: 0.5rem;
+      h3 {
+        color: var(--maintext);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        span {
+          color: #7e88c3;
+        }
+      }
+      p {
+        text-transform: capitalize;
+      }
+    }
+    .bottom {
+      @media (min-width: 768px) {
+        & {
+          justify-content: center;
+        }
+      }
+      div {
+        &:first-child {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          @media (min-width: 768px) {
+            & {
+              flex-direction: row;
+              align-items: center;
+              height: 100%;
+              width: 100%;
+              padding-right: 10%;
+              p {
+                position: absolute;
+                left: 17%;
+              }
+              h3 {
+                width: 100%;
+                text-align: end;
+              }
+            }
+          }
+          h3 {
+            font-size: 1.1rem;
+            color: var(--maintext);
+          }
+        }
+        &:last-child {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 35%;
+          @media (min-width: 768px) {
+            min-width: 40%;
+            justify-content: flex-end;
+            margin: 0 1rem 0 0;
+          }
+          .status-box {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 7px;
+            // background-color: #979797;
+            // opacity: 0.2;
+            @media (min-width: 768px) {
+              &:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                display: inline-block;
+                background-image: url(../assets/icon-arrow-right.svg);
+                background-position: right;
+                background-repeat: no-repeat;
+                background-size: 0.5rem;
+                right: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+@import "variables";
+
+.transparent-background {
+  position: fixed;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.modal {
+  border-radius: 10px;
+  z-index: 1000;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  padding: 2rem;
+  background-color: var(--bg);
+  @media (min-width: 1360px) {
+    width: 40%;
+  }
+  h2 {
+    font-size: 1.25rem;
+    padding: 0.5rem 0 0 0;
+    color: var(--maintext);
+  }
+  p {
+    color: var(--pcolor);
+    font-size: 0.8rem;
+    line-height: 1.3rem;
+    text-align: justify;
+    margin: 1.5rem 0;
+    span {
+      text-transform: uppercase;
+    }
+  }
+  div {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      border-radius: 30px;
+      padding: 1rem 1.5rem;
+      color: #7e88c3;
+      background-color: var(--elbg);
+      transition: background 0.3s ease;
+      margin-left: 0.5rem;
+      &:hover {
+        background: #dfe3fa;
+      }
+      &:last-child {
+        background-color: #ec5757;
+        color: white;
+        &:hover {
+          background: #ff9797;
+        }
+      }
+    }
+  }
+}

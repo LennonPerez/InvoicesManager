@@ -1,0 +1,73 @@
+@import "bar";
+@import "form";
+@import "Invoices";
+@import "empty";
+@import "list";
+@import "details";
+@import "modal";
+@import "variables";
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: spartan;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: var(--bg);
+  transition: background 0.1s ease, color 0.3s ease-in-out;
+  overflow: hidden;
+}
+.btn-back {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-weight: bold;
+  margin: 1.5rem 0 0 0;
+  padding: 1rem 1rem 1rem 0;
+  color: var(--maintext);
+  &::before {
+    margin-right: 1.5rem;
+    display: inline-block;
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: url(../assets/icon-arrow-left.svg) center no-repeat;
+  }
+}
+.status {
+  text-align: center !important;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  padding: 0.75rem 1rem;
+  border-radius: 7px;
+  min-width: 7rem;
+  &::before {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    content: "";
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+}
+.paid {
+  color: #33d69f !important;
+  background-color: var(--paidbg);
+  &::before {
+    background-color: #33d69f;
+  }
+}
+.pending {
+  color: #ff8f00 !important;
+  background-color: var(--pendingbg);
+  &::before {
+    background-color: #ff8f00;
+  }
+}
+.draft {
+  color: var(--maintext) !important;
+  background-color: var(--draftbg);
+}

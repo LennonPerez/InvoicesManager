@@ -1,0 +1,189 @@
+@import "variables";
+
+.invoices-list {
+  width: 100%;
+  height: 100vh;
+  padding: 0 5%;
+  overflow: auto;
+  background-color: var(--bg);
+  &::-webkit-scrollbar {
+    width: 7.5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--borderinput);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  @media (min-width: 1440px) {
+    padding: 0 15% 0 calc(15% + 6rem);
+  }
+  .invoices-bar {
+    display: flex;
+    margin: 6vh 0 1.5rem 0;
+    height: 3rem;
+    background-color: var(--bg);
+    @media (min-width: 768px) {
+      margin: 4rem 0 3rem 0;
+    }
+    @media (min-width: 1440px) {
+      margin-top: 8vh;
+    }
+    .tittle-box {
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      h2 {
+        font-size: 1.3rem;
+        padding-top: 0.4rem;
+        color: var(--maintext);
+        @media (min-width: 768px) {
+          padding-top: 0;
+          font-size: 1.8rem;
+        }
+      }
+      p {
+        color: var(--pcolor);
+        font-size: 0.8rem;
+      }
+    }
+    .filter-box {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 5rem;
+      @media (min-width: 768px) {
+        width: 12rem;
+        justify-content: center;
+        padding-right: 3rem;
+      }
+      li {
+        list-style: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+        color: var(--maintext);
+        position: relative;
+
+        button {
+          cursor: pointer;
+          background: none;
+          border: none;
+          color: var(--maintext);
+          font-weight: bold;
+          font-size: 0.9rem;
+          .arrow {
+            position: absolute;
+            right: -1.5rem;
+            top: 25%;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-image: url(../assets/icon-arrow-down.svg);
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+            @media (min-width: 768px) {
+              top: 0;
+              margin: 0.25rem 0 0 1rem;
+              background-size: 0.8rem;
+            }
+          }
+        }
+        ul {
+          opacity: 0;
+          pointer-events: none;
+          width: 7rem;
+          border-radius: 7px;
+          background-color: var(--elbg);
+          position: absolute;
+          top: 2rem;
+          left: -2rem;
+          padding: 1rem 1rem 1rem 0.6rem;
+          transition: opacity 0.3s ease;
+          -webkit-box-shadow: 0px 0px 11px -4px rgba(0, 0, 0, 0.3);
+          -moz-box-shadow: 0px 0px 11px -4px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 11px -4px rgba(0, 0, 0, 0.3);
+          @media (min-width: 768px) {
+            width: 12rem;
+            left: -1.5rem;
+            top: 2.5rem;
+            z-index: 1;
+            padding: 1.5rem;
+          }
+          li {
+            padding: 0.4rem 0;
+            &::after {
+              display: none;
+            }
+            &:first-child {
+              padding-top: 0;
+            }
+            &:last-child {
+              padding-bottom: 0;
+            }
+            input {
+              margin-right: 0.5rem;
+              cursor: pointer;
+              @media (min-width: 768px) {
+                margin-right: 0.8rem;
+              }
+            }
+            label {
+              cursor: pointer;
+              color: var(--maintext);
+              font-size: 0.85rem;
+            }
+          }
+        }
+      }
+    }
+    .button-box {
+      height: 100%;
+      width: 6rem;
+      position: relative;
+      @media (min-width: 768px) {
+        width: 10rem;
+      }
+      &::before {
+        pointer-events: none;
+        cursor: pointer;
+        content: "";
+        display: block;
+        position: absolute;
+        margin-top: 0.45rem;
+        margin-left: 0.3rem;
+        width: 35px;
+        height: 35px;
+        background-color: white;
+        background-image: url(../assets/icon-plus.svg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        border-radius: 100px;
+        background-size: 0.8rem;
+      }
+      button {
+        outline: none;
+        font-weight: 700;
+        background-color: #7c5dfa;
+        color: white;
+        width: 100%;
+        height: 100%;
+        border-radius: 25px;
+        border: none;
+        padding-left: 2.2rem;
+        padding-top: 0.2rem;
+        transition: background 0.3s ease;
+        cursor: pointer;
+        &:hover {
+          background: #9277ff;
+        }
+      }
+    }
+  }
+}

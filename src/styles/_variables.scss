@@ -1,0 +1,63 @@
+:root {
+  --opacitygreen: #12241e;
+  --opacityorange: #261706;
+  --opacitygray: #201f1f;
+  --opacitywhite: #ebfff9;
+  --opacitywhiteorange: #fff3e5;
+  --opacitiergray: #f2f2f2;
+  --lightgray: #888eb0;
+  --darkgray: #373b53;
+  --darkblue: #252945;
+  --darkerblue: #141625;
+  --lightblack: #1e2139;
+  --darkerone: #0c0e16;
+  --white: #fff;
+  --almostwhite: #f8f8f8;
+  --superlightviolet: #f9fafe;
+  --varylightviolet: #dfe3fa;
+  --lightviolet: #7e88c3;
+  --moon: url(../assets/icon-moon.svg);
+  --sun: url(../assets/icon-sun.svg);
+}
+//themes
+
+.light {
+  --barbg: var(--darkgray);
+  --bg: var(--almostwhite);
+  --elbg: var(--white);
+  --maintext: var(--darkerblue);
+  --pcolor: var(--lightviolet);
+  --pricingbox: var(--superlightviolet);
+  --btnbg: var(--varylightviolet);
+  --btncolor: var(--lightviolet);
+  --totalbg: var(--darkgray);
+  --borderinput: var(--varylightviolet);
+  --btnedit: var(--lightviolet);
+  --btneditbg: var(--white);
+  --additembg: var(--superlightviolet);
+  --theme: var(--moon);
+  --btndraft: var(--darkgray);
+  --paidbg: var(--opacitywhite);
+  --pendingbg: var(--opacitywhiteorange);
+  --draftbg: var(--opacitiergray);
+}
+.dark {
+  --barbg: var(--darkerblue);
+  --bg: var(--darkerone);
+  --elbg: var(--darkerblue);
+  --maintext: var(--almostwhite);
+  --pcolor: var(--varylightviolet);
+  --pricingbox: var(--lightblack);
+  --btnbg: var(--lightviolet);
+  --btncolor: var(--almostwhite);
+  --totalbg: var(--darkerone);
+  --borderinput: var(--lightblack);
+  --btnedit: var(--almostwhite);
+  --btneditbg: var(--darkblue);
+  --additembg: var(--lightblack);
+  --theme: var(--sun);
+  --btndraft: var(--darkgray);
+  --paidbg: var(--opacitygreen);
+  --pendingbg: var(--opacityorange);
+  --draftbg: var(--opacitygray);
+}

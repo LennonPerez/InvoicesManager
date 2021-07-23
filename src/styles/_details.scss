@@ -1,0 +1,345 @@
+@import "variables";
+
+.container {
+  position: relative;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 0 5%;
+  background-color: var(--bg);
+  &::-webkit-scrollbar {
+    width: 7.5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  &::-webkit-scrollbar-track-piece:end {
+    margin-bottom: 5rem;
+  }
+  &::-webkit-scrollbar-track-piece:start {
+    margin-top: 4rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--borderinput);
+    border-radius: 10px;
+    height: 5rem;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  @media (min-width: 768px) {
+    margin: 0.2rem auto 0 auto;
+    padding: 0 5% 10rem 5%;
+  }
+  @media (min-width: 1360px) {
+    width: 90%;
+  }
+  @media (min-width: 1440px) {
+    margin: 5vh auto 0 auto;
+    padding: 0 5% 0 calc(6rem + 5%);
+    position: relative;
+    width: 80%;
+  }
+  .errorpendient {
+    opacity: 0;
+    color: red;
+    position: absolute;
+    padding: 1rem 0;
+    left: 50%;
+    transform: translate(-50%);
+    transition: opacity 0.3s ease;
+    @media (min-width: 768px) {
+      padding: 1rem 0 1rem 1rem;
+      right: 5%;
+      left: unset;
+      top: 1.5rem;
+      transform: none;
+    }
+  }
+  .details-container {
+    .status-container {
+      border-radius: 5px;
+      background-color: var(--elbg);
+      margin: 1rem 0;
+      padding: 0 1rem;
+      width: 100%;
+      height: 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @media (min-width: 768px) {
+        width: 50%;
+        padding: 0 0 0 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+      p {
+        width: 20%;
+        color: var(--pcolor);
+        font-weight: 500;
+        text-transform: capitalize;
+        font-size: 0.8rem;
+        @media (min-width: 768px) {
+          max-width: 3rem;
+        }
+      }
+      h4 {
+        color: var(--maintext);
+        width: 7rem;
+        text-align: right;
+        @media (min-width: 768px) {
+          margin-right: auto;
+          margin-left: 1rem;
+        }
+      }
+    }
+    .details-box {
+      width: 100%;
+      border-radius: 5px;
+      background-color: var(--elbg);
+      padding: 2rem;
+      @media (min-width: 768px) {
+        padding: 2.5rem;
+        position: relative;
+        // margin-bottom: 5rem;
+      }
+      p {
+        color: var(--pcolor);
+        font-weight: 500;
+        // @media (min-width: 768px) {
+        //   font-weight: 600;
+        // }
+      }
+      h4 {
+        @media (min-width: 768px) {
+          font-size: 1.1rem;
+        }
+      }
+      div {
+        h3 {
+          font-size: 0.9rem;
+          margin-bottom: 0.4rem;
+          color: var(--maintext);
+          text-transform: uppercase;
+          @media (min-width: 768px) {
+            font-size: 1rem;
+          }
+          span {
+            color: #7e88c3;
+          }
+        }
+        p {
+          font-size: 0.8rem;
+          color: var(--pcolor);
+        }
+      }
+      .address {
+        width: 50%;
+        margin-top: 2.5rem;
+        @media (min-width: 768px) {
+          position: absolute;
+          top: 0;
+          right: 2.5rem;
+          text-align: end;
+        }
+        p {
+          font-size: 0.75rem;
+          margin: 0.5rem 0;
+          color: var(--pcolor);
+          @media (min-width: 768px) {
+            &:first-child {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+      .payment {
+        width: 100%;
+        display: flex;
+        div {
+          width: 50%;
+          color: var(--maintext);
+          @media (min-width: 768px) {
+            margin-top: 1.5rem;
+            width: 32%;
+          }
+          &:first-child {
+            p {
+              margin-bottom: 1rem;
+              margin-top: 2.5rem;
+            }
+          }
+          &:last-child {
+            p {
+              margin-top: 0.4rem;
+              &:first-child {
+                margin-top: 2.5rem;
+              }
+            }
+            h4 {
+              margin-top: 1rem;
+              margin-bottom: 0.8rem;
+              color: var(--maintext);
+            }
+          }
+        }
+      }
+      .email-container {
+        margin: 2.5rem 0 0 0;
+        @media (min-width: 768px) {
+          position: absolute;
+          right: 10%;
+          top: 6.5rem;
+        }
+        h4 {
+          margin-top: 1rem;
+          color: var(--maintext);
+        }
+      }
+      .princing {
+        background-color: var(--pricingbox);
+        border-radius: 10px;
+        margin-top: 2.5rem;
+        height: max-content;
+        padding: 0.5rem 0 0 0;
+        @media (min-width: 768px) {
+          margin-top: 3.5rem;
+          padding: 1rem 0 0 0;
+        }
+        .items {
+          padding: 0.5rem;
+          .item-price {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem auto;
+            width: 85%;
+            height: 2.5rem;
+            @media (min-width: 768px) {
+              position: relative;
+              width: 90%;
+            }
+            div {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              @media (min-width: 768px) {
+                flex-direction: row;
+              }
+              .price-quantity {
+                position: absolute;
+                left: 20%;
+                width: 55%;
+                p {
+                  width: 50%;
+                  text-align: right;
+                }
+              }
+              h5 {
+                color: var(--maintext);
+              }
+              p {
+                font-weight: bold;
+                color: #7e88c3;
+              }
+              &:last-child {
+                justify-content: center;
+                p {
+                  color: var(--pcolor);
+                }
+              }
+            }
+          }
+        }
+        .total {
+          padding: 0 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 5rem;
+          background-color: var(--totalbg);
+          border-radius: 0 0 10px 10px;
+          @media (min-width: 768px) {
+            padding: 0 5%;
+          }
+          p {
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 300;
+            &:last-child {
+              font-weight: bolder;
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer-details {
+    background-color: var(--elbg);
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    // padding: 0 2%;
+    margin: 4rem 0 5rem 0;
+    position: relative;
+    -webkit-box-shadow: 0px -15px 60px 0px rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 0px -15px 60px 0px rgba(0, 0, 0, 0.28);
+    box-shadow: 0px -15px 60px 0px rgba(0, 0, 0, 0.28);
+    @media (min-width: 768px) {
+      position: absolute;
+      top: 1.4rem;
+      width: 60%;
+      padding-right: 2rem;
+      right: 5.5%;
+      box-shadow: none;
+      height: 6rem;
+      border-radius: 0 5px 5px 0;
+    }
+    @media (min-width: 1440px) {
+      right: 6.2%;
+      width: 50%;
+    }
+    button {
+      cursor: pointer;
+      margin: 0 0.3rem;
+      padding: 1rem 1.5rem;
+      border-radius: 25px;
+      border: none;
+      color: white;
+      font-weight: 500;
+      transition: background 0.3s ease;
+      @media (min-width: 768px) {
+        padding: 1.1rem 1.5rem;
+      }
+    }
+    .edit {
+      color: var(--btncolor);
+      background-color: var(--btnbg);
+      &:hover {
+        background: var(--pcolor);
+      }
+    }
+    .delete {
+      background: #ec5757;
+      &:hover {
+        background: #ff9797;
+      }
+    }
+    .paid {
+      color: white !important;
+      background: #7c5dfa;
+      transition: border 0.1s ease;
+      &:hover {
+        background: #9277ff;
+      }
+    }
+    .pending {
+      color: white !important;
+      background: var(--btndraft);
+      &:hover {
+        color: #000 !important;
+        background: #fff;
+      }
+    }
+  }
+}
