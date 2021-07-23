@@ -2312,4 +2312,8 @@ body {
   color: var(--maintext) !important;
   background-color: var(--draftbg);
 }
+
+.draft::before {
+  background-color: var(--maintext);
+}
 /*# sourceMappingURL=app.css.map */

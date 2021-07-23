@@ -70,4 +70,7 @@ body {
 .draft {
   color: var(--maintext) !important;
   background-color: var(--draftbg);
+  &::before {
+    background-color: var(--maintext);
+  }
 }

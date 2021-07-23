@@ -10,11 +10,7 @@ const Item = ({ itemm }) => {
   return (
     <div className="item">
       <div>
-        {itemm.id === 0 ? (
-          <label>Item Name</label>
-        ) : window.innerWidth > 768 ? null : (
-          <label>Item Name</label>
-        )}
+        {window.innerWidth > 768 ? null : <label>Item Name</label>}
         <input
           type="text"
           name="name"
@@ -24,11 +20,7 @@ const Item = ({ itemm }) => {
       </div>
       <div>
         <div>
-          {itemm.id === 0 ? (
-            <label>Qty</label>
-          ) : window.innerWidth > 768 ? null : (
-            <label>Qty</label>
-          )}
+          {window.innerWidth > 768 ? null : <label>Qty</label>}
           <input
             type="number"
             name="quantity"
@@ -37,11 +29,7 @@ const Item = ({ itemm }) => {
           />
         </div>
         <div>
-          {itemm.id === 0 ? (
-            <label>Price</label>
-          ) : window.innerWidth > 768 ? null : (
-            <label>Price</label>
-          )}
+          {window.innerWidth > 768 ? null : <label>Price</label>}
           <input
             type="number"
             name="price"
@@ -50,11 +38,7 @@ const Item = ({ itemm }) => {
           />
         </div>
         <div>
-          {itemm.id === 0 ? (
-            <label>Total</label>
-          ) : window.innerWidth > 768 ? null : (
-            <label>Total</label>
-          )}
+          {window.innerWidth > 768 ? null : <label>Total</label>}
           <input
             type="text"
             className="total"
@@ -63,9 +47,7 @@ const Item = ({ itemm }) => {
             value={itemm.total}
           />
         </div>
-        {itemm.id === 0 ? null : (
-          <button type="button" onClick={deleteItem}></button>
-        )}
+        <button type="button" onClick={deleteItem}></button>
       </div>
     </div>
   );
