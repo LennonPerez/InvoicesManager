@@ -22,13 +22,13 @@ const Item = ({ itemm, readItem }) => {
     dispatch(deleteItemAction(itemm.id));
   };
   return (
-    <div className="item" onClick={editItem}>
-      <div>
+    <div className="item">
+      <div onClick={editItem}>
         {window.innerWidth > 768 ? null : <label>Item Name</label>}
         <input type="text" name="name" disabled={true} value={item.name} />
       </div>
       <div>
-        <div>
+        <div onClick={editItem}>
           {window.innerWidth > 768 ? null : <label>Qty</label>}
           <input
             type="number"
@@ -37,7 +37,7 @@ const Item = ({ itemm, readItem }) => {
             value={item.quantity}
           />
         </div>
-        <div>
+        <div onClick={editItem}>
           {window.innerWidth > 768 ? null : <label>Price</label>}
           <input
             type="number"
@@ -46,7 +46,7 @@ const Item = ({ itemm, readItem }) => {
             value={item.price}
           />
         </div>
-        <div>
+        <div onClick={editItem}>
           {window.innerWidth > 768 ? null : <label>Total</label>}
           <input
             type="text"

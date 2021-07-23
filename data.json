@@ -47,13 +47,6 @@
       },
       "items": [
         {
-          "id": 2,
-          "name": "Email Design",
-          "quantity": 2,
-          "price": 200,
-          "total": 400
-        },
-        {
           "name": "Banner Design",
           "quantity": "5",
           "price": "163",
@@ -61,10 +54,11 @@
           "id": 1
         },
         {
-          "name": "Web Design",
-          "quantity": "1",
-          "price": "750",
-          "total": 750
+          "name": "Email Design",
+          "quantity": 2,
+          "price": "350.56",
+          "total": 701.12,
+          "id": 2
         }
       ],
       "clientEmail": "alexgrim@mail.com",
@@ -74,7 +68,7 @@
       "paymentDue": "2021-09-20T00:00:00.000Z",
       "paymentTerm": 30,
       "status": "pending",
-      "total": 1965,
+      "total": 1516.12,
       "id": "XM9141"
     },
     {
