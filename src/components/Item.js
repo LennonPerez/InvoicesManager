@@ -1,22 +1,31 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteItemAction } from "../actions/InvoicesActions";
 
-const Item = ({ itemm }) => {
+const Item = ({ itemm, readItem }) => {
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
+  const [item, setItem] = useState({
+    name: itemm.name,
+    quantity: itemm.quantity,
+    price: itemm.price,
+    total: itemm.total,
+    id: itemm.id,
+  });
+
+  const editItem = () => {
+    readItem(item);
+    dispatch(deleteItemAction(itemm.id));
+  };
 
   const deleteItem = () => {
     dispatch(deleteItemAction(itemm.id));
   };
   return (
-    <div className="item">
+    <div className="item" onClick={editItem}>
       <div>
         {window.innerWidth > 768 ? null : <label>Item Name</label>}
-        <input
-          type="text"
-          name="name"
-          disabled={itemm.name.length > 0 ? true : false}
-          value={itemm.name}
-        />
+        <input type="text" name="name" disabled={true} value={item.name} />
       </div>
       <div>
         <div>
@@ -24,8 +33,8 @@ const Item = ({ itemm }) => {
           <input
             type="number"
             name="quantity"
-            disabled={itemm.quantity.length > 0 ? true : false}
-            value={itemm.quantity}
+            disabled={true}
+            value={item.quantity}
           />
         </div>
         <div>
@@ -33,8 +42,8 @@ const Item = ({ itemm }) => {
           <input
             type="number"
             name="price"
-            disabled={itemm.price.length > 0 ? true : false}
-            value={itemm.price}
+            disabled={true}
+            value={item.price}
           />
         </div>
         <div>

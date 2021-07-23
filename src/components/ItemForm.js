@@ -69,7 +69,7 @@ const ItemForm = ({ setFormError2 }) => {
 
   return (
     <Fragment>
-      <div className="item">
+      <div className="item form">
         <div>
           <label>Item Name</label>
           <input
@@ -105,7 +105,7 @@ const ItemForm = ({ setFormError2 }) => {
             <label>Total</label>
             <input
               type="text"
-              className="total"
+              className="total inputitem"
               name="total"
               disabled={true}
               value={total}
@@ -114,7 +114,7 @@ const ItemForm = ({ setFormError2 }) => {
         </div>
       </div>
       {invoiceitems.map((item) => (
-        <Item key={uuid()} itemm={item} />
+        <Item key={uuid()} itemm={item} readItem={readItem} />
       ))}
       <p className="errorform" style={errorform ? { display: "block" } : null}>
         All the inputs must be filled before add a new item

@@ -33,43 +33,49 @@
       "total": 1800.9
     },
     {
-      "id": "XM9141",
-      "createdAt": "2021-08-21",
-      "paymentDue": "2021-09-20",
-      "description": "Graphic Design",
-      "paymentTerms": 30,
-      "clientName": "Alex Grim",
-      "clientEmail": "alexgrim@mail.com",
-      "status": "pending",
-      "senderAddress": {
-        "street": "19 Union Terrace",
-        "city": "London",
-        "postCode": "E1 3EZ",
-        "country": "United Kingdom"
-      },
       "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
+        "city": "Miami",
+        "country": "United States",
+        "postCode": "33195",
+        "street": "8020 NW 60th St. Bldg. B"
+      },
+      "senderAddress": {
+        "city": "London",
+        "country": "United Kingdom",
+        "postCode": "E1 3EZ",
+        "street": "19 Union Terrace"
       },
       "items": [
-        {
-          "id": 1,
-          "name": "Banner Design",
-          "quantity": 1,
-          "price": 156,
-          "total": 156
-        },
         {
           "id": 2,
           "name": "Email Design",
           "quantity": 2,
           "price": 200,
           "total": 400
+        },
+        {
+          "name": "Banner Design",
+          "quantity": "5",
+          "price": "163",
+          "total": 815,
+          "id": 1
+        },
+        {
+          "name": "Web Design",
+          "quantity": "1",
+          "price": "750",
+          "total": 750
         }
       ],
-      "total": 556
+      "clientEmail": "alexgrim@mail.com",
+      "clientName": "Alex Grim",
+      "createdAt": "2021-08-21",
+      "description": "Graphic Design",
+      "paymentDue": "2021-09-20T00:00:00.000Z",
+      "paymentTerm": 30,
+      "status": "pending",
+      "total": 1965,
+      "id": "XM9141"
     },
     {
       "id": "RG0314",
@@ -253,13 +259,6 @@
       },
       "items": [
         {
-          "name": "Color design",
-          "quantity": "1",
-          "price": "150.35",
-          "total": 150.35,
-          "id": "25481664-8a64-49c3-93d5-c0408f997140"
-        },
-        {
           "name": "web design",
           "quantity": "1",
           "price": "300.99",
@@ -270,6 +269,13 @@
           "quantity": "1",
           "price": "565.21",
           "total": 565.21
+        },
+        {
+          "name": "Color design",
+          "quantity": "3",
+          "price": "150.35",
+          "total": 451.04999999999995,
+          "id": "25481664-8a64-49c3-93d5-c0408f997140"
         }
       ],
       "clientEmail": "lennon@lennon.com",
@@ -279,7 +285,7 @@
       "paymentDue": "2021-08-21T00:00:00.000Z",
       "paymentTerm": 30,
       "status": "pending",
-      "total": 1016.5500000000001,
+      "total": 1317.25,
       "id": "c706b7"
     },
     {
