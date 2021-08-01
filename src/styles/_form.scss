@@ -1,5 +1,16 @@
 @import "variables";
 
+@keyframes form-animation {
+  100% {
+    left: 0;
+  }
+}
+@keyframes form-animation-1440 {
+  100% {
+    left: 6rem;
+  }
+}
+
 .bar-container {
   .edit-container {
     background-color: var(--bg);
@@ -7,20 +18,23 @@
     height: 100%;
     position: absolute;
     top: 5rem;
+    left: -10rem;
+    animation: form-animation 0.5s ease forwards;
     z-index: 3;
     padding-bottom: 5rem;
     @media (min-width: 768px) {
       width: 75%;
-      left: 0;
+      left: -15rem;
       padding: 3rem 3% 5rem 3%;
       transform: none;
       border-radius: 0 20px 20px 0;
     }
     @media (min-width: 1440px) {
       top: 0;
-      left: 6rem;
+      left: -20rem;
       width: 50%;
       padding-bottom: 0;
+      animation: form-animation-1440 0.5s ease forwards;
       // padding: 0 15% 0 calc(15% + 6rem);
     }
     .container {
@@ -457,8 +471,9 @@
           padding: 0 8.5%;
           position: fixed;
           bottom: 0;
-          left: 0;
+          left: -15rem;
           width: 75%;
+          animation: form-animation 0.5s ease forwards;
         }
         @media (min-width: 1440px) {
           border-radius: 0 0 20px 0;

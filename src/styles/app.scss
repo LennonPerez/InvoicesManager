@@ -14,10 +14,10 @@
   font-family: spartan;
   margin: 0;
   padding: 0;
+  transition: background 0.2s ease, color 0.3s ease-in-out;
 }
 body {
   background-color: var(--bg);
-  transition: background 0.1s ease, color 0.3s ease-in-out;
   overflow: hidden;
 }
 .btn-back {

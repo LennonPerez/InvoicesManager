@@ -1,27 +1,24 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   openFormAction,
   filterInvoicesbyStatusAction,
 } from "../actions/InvoicesActions";
 
 const InvoicesBar = () => {
+  const { invoices, filter } = useSelector((state) => state.invoices);
   const dispatch = useDispatch();
-
-  const invoices = useSelector((state) => state.invoices.invoices);
-
-  const filter = useSelector((state) => state.invoices.filter);
 
   const openForm = () => {
     dispatch(openFormAction());
   };
 
   const readFilter = (e) => {
-    if (e.target.id === filter) {
-      dispatch(filterInvoicesbyStatusAction(""));
+    if (filter.includes(e.target.id)) {
+      filter.filter((fil) => fil !== e.target.id);
     } else {
-      dispatch(filterInvoicesbyStatusAction(e.target.id));
+      filter.push(e.target.id);
     }
+    dispatch(filterInvoicesbyStatusAction(filter));
   };
 
   const openFilter = () => {

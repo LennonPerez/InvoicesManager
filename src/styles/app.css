@@ -212,12 +212,39 @@
   --draftbg: var(--opacitygray);
 }
 
+@-webkit-keyframes form-animation {
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes form-animation {
+  100% {
+    left: 0;
+  }
+}
+
+@-webkit-keyframes form-animation-1440 {
+  100% {
+    left: 6rem;
+  }
+}
+
+@keyframes form-animation-1440 {
+  100% {
+    left: 6rem;
+  }
+}
+
 .bar-container .edit-container {
   background-color: var(--bg);
   width: 100%;
   height: 100%;
   position: absolute;
   top: 5rem;
+  left: -10rem;
+  -webkit-animation: form-animation 0.5s ease forwards;
+          animation: form-animation 0.5s ease forwards;
   z-index: 3;
   padding-bottom: 5rem;
 }
@@ -225,7 +252,7 @@
 @media (min-width: 768px) {
   .bar-container .edit-container {
     width: 75%;
-    left: 0;
+    left: -15rem;
     padding: 3rem 3% 5rem 3%;
     -webkit-transform: none;
             transform: none;
@@ -236,9 +263,11 @@
 @media (min-width: 1440px) {
   .bar-container .edit-container {
     top: 0;
-    left: 6rem;
+    left: -20rem;
     width: 50%;
     padding-bottom: 0;
+    -webkit-animation: form-animation-1440 0.5s ease forwards;
+            animation: form-animation-1440 0.5s ease forwards;
   }
 }
 
@@ -862,8 +891,10 @@
     padding: 0 8.5%;
     position: fixed;
     bottom: 0;
-    left: 0;
+    left: -15rem;
     width: 75%;
+    -webkit-animation: form-animation 0.5s ease forwards;
+            animation: form-animation 0.5s ease forwards;
   }
 }
 
@@ -2135,6 +2166,18 @@
   --draftbg: var(--opacitygray);
 }
 
+@-webkit-keyframes modal-animation {
+  100% {
+    top: 50%;
+  }
+}
+
+@keyframes modal-animation {
+  100% {
+    top: 50%;
+  }
+}
+
 .transparent-background {
   position: fixed;
   z-index: 1000;
@@ -2150,11 +2193,13 @@
   z-index: 1000;
   position: fixed;
   left: 50%;
-  top: 50%;
+  top: 70%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   width: 90%;
   padding: 2rem;
+  -webkit-animation: modal-animation 0.5s ease forwards;
+          animation: modal-animation 0.5s ease forwards;
   background-color: var(--bg);
 }
 
@@ -2289,12 +2334,12 @@
   font-family: spartan;
   margin: 0;
   padding: 0;
+  -webkit-transition: background 0.2s ease, color 0.3s ease-in-out;
+  transition: background 0.2s ease, color 0.3s ease-in-out;
 }
 
 body {
   background-color: var(--bg);
-  -webkit-transition: background 0.1s ease, color 0.3s ease-in-out;
-  transition: background 0.1s ease, color 0.3s ease-in-out;
   overflow: hidden;
 }
 

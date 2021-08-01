@@ -12,8 +12,8 @@ const Modal = ({ open, children, onClose, selectedinvoice }) => {
 
   const deleteInvoice = (invoice) => {
     dispatch(deleteInvoiceAction(invoice));
-    history.push("/");
     dispatch(getInvoiceAction());
+    history.push("/");
   };
 
   if (!open) return null;

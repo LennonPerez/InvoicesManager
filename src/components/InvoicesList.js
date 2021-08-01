@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addInvoiceAction } from "../actions/InvoicesActions";
+import { selectInvoiceAction } from "../actions/InvoicesActions";
 
 const InvoicesList = () => {
   const invoices = useSelector((state) => state.invoices.invoices);
@@ -21,7 +21,7 @@ const InvoicesList = () => {
 
   const getInvoice = (invoice) => {
     history.push(`/details/${invoice.id}`);
-    dispatch(addInvoiceAction(invoice));
+    dispatch(selectInvoiceAction(invoice));
   };
 
   return (

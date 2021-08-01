@@ -1,13 +1,11 @@
 import {
-  GET_INVOICE,
+  GET_INVOICES,
   OPEN_FORM,
   CLOSE_FORM,
   SELECT_INVOICE,
   SELECT_INVOICE_EDIT,
   EDIT_EXISTING_INVOICE,
   RESET_SELECTED_INVOICE,
-  ADD_NEW_INVOICE,
-  DELETE_INVOICE,
   CHANGE_INVOICE_STATUS,
   ADD_ITEM_TO_ITEMS,
   DELETE_ITEM,
@@ -20,14 +18,13 @@ const initialState = {
   invoices: [],
   selectedinvoice: null,
   items: [],
-  filter: "",
+  filter: [],
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_INVOICE:
-    case ADD_NEW_INVOICE:
+    case GET_INVOICES:
       return {
         ...state,
         invoices: action.payload,
@@ -60,14 +57,6 @@ export default function (state = initialState, action) {
         ...state,
         selectedinvoice: null,
       };
-    case DELETE_INVOICE:
-      return {
-        ...state,
-        invoices: state.invoices.filter(
-          (invoice) => invoice.id !== state.selectedinvoice.id
-        ),
-        selectedinvoice: null,
-      };
     case ADD_ITEM_TO_ITEMS:
       return {
         ...state,
@@ -86,7 +75,7 @@ export default function (state = initialState, action) {
     case FILTERED_INVOICES:
       return {
         ...state,
-        invoices: action.payload.filter((invoice) =>
+        invoices: state.invoices.filter((invoice) =>
           invoice.status.includes(state.filter)
         ),
       };

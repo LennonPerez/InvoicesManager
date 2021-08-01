@@ -5,7 +5,7 @@ import { deleteItemAction } from "../actions/InvoicesActions";
 const Item = ({ itemm, readItem }) => {
   const dispatch = useDispatch();
   // eslint-disable-next-line no-unused-vars
-  const [item, setItem] = useState({
+  const [item] = useState({
     name: itemm.name,
     quantity: itemm.quantity,
     price: itemm.price,

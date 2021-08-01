@@ -1,5 +1,11 @@
 @import "variables";
 
+@keyframes modal-animation {
+  100% {
+    top: 50%;
+  }
+}
+
 .transparent-background {
   position: fixed;
   z-index: 1000;
@@ -14,10 +20,11 @@
   z-index: 1000;
   position: fixed;
   left: 50%;
-  top: 50%;
+  top: 70%;
   transform: translate(-50%, -50%);
   width: 90%;
   padding: 2rem;
+  animation: modal-animation 0.5s ease forwards;
   background-color: var(--bg);
   @media (min-width: 1360px) {
     width: 40%;

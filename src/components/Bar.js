@@ -41,16 +41,16 @@ const Bar = () => {
       <div className="bar">
         <div className="logo-box" onClick={backToHome}>
           <img src={logo} alt="logo" />
-          <div></div>
+          <div />
         </div>
         <div className="theme-box">
           <div onClick={themeToggle} />
         </div>
         <div className="picture-box">
-          <div></div>
+          <div />
         </div>
       </div>
-      {open ? <Form /> : null}
+      {open && <Form />}
     </div>
   );
 };

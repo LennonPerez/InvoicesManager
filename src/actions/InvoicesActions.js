@@ -1,13 +1,11 @@
 import {
-  GET_INVOICE,
+  GET_INVOICES,
   OPEN_FORM,
   CLOSE_FORM,
   SELECT_INVOICE,
   SELECT_INVOICE_EDIT,
   EDIT_EXISTING_INVOICE,
   RESET_SELECTED_INVOICE,
-  ADD_NEW_INVOICE,
-  DELETE_INVOICE,
   CHANGE_INVOICE_STATUS,
   ADD_ITEM_TO_ITEMS,
   DELETE_ITEM,
@@ -25,7 +23,7 @@ export function getInvoiceAction() {
 }
 
 const getInvoices = (invoices) => ({
-  type: GET_INVOICE,
+  type: GET_INVOICES,
   payload: invoices,
 });
 
@@ -49,7 +47,7 @@ const closeForm = () => ({
   type: CLOSE_FORM,
 });
 
-export function addInvoiceAction(invoice) {
+export function selectInvoiceAction(invoice) {
   return (dispatch) => {
     dispatch(selectInvoice(invoice));
   };
@@ -83,25 +81,14 @@ const resetSelectedInvoice = () => ({
 export function addNewInvoiceAction(invoice) {
   return async (dispatch) => {
     await AxiosClient.post("/invoices", invoice);
-    dispatch(addNewInvoice(invoice));
   };
 }
-
-const addNewInvoice = (invoice) => ({
-  type: ADD_NEW_INVOICE,
-  payload: invoice,
-});
 
 export function deleteInvoiceAction(invoice) {
   return async (dispatch) => {
     await AxiosClient.delete(`/invoices/${invoice.id}`);
-    dispatch(deleteInvoice(invoice.id));
   };
 }
-const deleteInvoice = (id) => ({
-  type: DELETE_INVOICE,
-  payload: id,
-});
 
 export function editExistingInvoiceAction(invoice) {
   return async (dispatch) => {
@@ -151,9 +138,8 @@ const deleteItem = (id) => ({
 
 export function filterInvoicesbyStatusAction(status) {
   return async (dispatch) => {
-    const invoices = await AxiosClient.get("/invoices");
     dispatch(filterStatus(status));
-    dispatch(filterInvoices(invoices.data));
+    dispatch(filterInvoices());
   };
 }
 
@@ -161,7 +147,6 @@ const filterStatus = (status) => ({
   type: FILTER_INVOICES_BY_STATUS,
   payload: status,
 });
-const filterInvoices = (invoices) => ({
+const filterInvoices = () => ({
   type: FILTERED_INVOICES,
-  payload: invoices,
 });

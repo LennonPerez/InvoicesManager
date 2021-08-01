@@ -1,13 +1,13 @@
 import { Fragment, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import ItemForm from "./ItemForm";
 import {
   closeFormAction,
   addNewInvoiceAction,
   getInvoiceAction,
   editExistingInvoiceAction,
 } from "../actions/InvoicesActions";
-import ItemForm from "./ItemForm";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -182,6 +182,7 @@ const Form = () => {
         setFormError2(true);
       }
     }
+    dispatch(getInvoiceAction());
   };
 
   const inputError = (bool) => {

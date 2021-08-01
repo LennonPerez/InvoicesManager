@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Modal from "./Modal";
 import { v4 as uuidv4 } from "uuid";
 import {
   selectInvoiceEditAction,
-  addInvoiceAction,
+  selectInvoiceAction,
   changeInvoiceStatusAction,
   openFormAction,
 } from "../actions/InvoicesActions";
@@ -38,7 +37,7 @@ const Details = () => {
 
   const returnToHome = () => {
     history.push("/");
-    dispatch(addInvoiceAction(null));
+    dispatch(selectInvoiceAction(null));
   };
 
   const openEdit = () => {
@@ -212,17 +211,19 @@ const Details = () => {
           </button>
         ) : null}
       </div>
-      <Modal
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        selectedinvoice={selectedinvoice}
-      >
-        <h2>Confirm Deletion</h2>
-        <p>
-          Are you sure you want to delete the invoice <span>#{id}</span>?, this
-          action cannot be undone.
-        </p>
-      </Modal>
+      {isOpen && (
+        <Modal
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          selectedinvoice={selectedinvoice}
+        >
+          <h2>Confirm Deletion</h2>
+          <p>
+            Are you sure you want to delete the invoice <span>#{id}</span>?,
+            this action cannot be undone.
+          </p>
+        </Modal>
+      )}
     </div>
   );
 };
