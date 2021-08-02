@@ -2,6 +2,8 @@ import {
   GET_INVOICES,
   OPEN_FORM,
   CLOSE_FORM,
+  ADD_NEW_INVOICE,
+  DELETE_INVOICE,
   SELECT_INVOICE,
   SELECT_INVOICE_EDIT,
   EDIT_EXISTING_INVOICE,
@@ -9,7 +11,6 @@ import {
   CHANGE_INVOICE_STATUS,
   ADD_ITEM_TO_ITEMS,
   DELETE_ITEM,
-  FILTER_INVOICES_BY_STATUS,
   FILTERED_INVOICES,
 } from "../types/index";
 import AxiosClient from "../config/axios";
@@ -81,14 +82,24 @@ const resetSelectedInvoice = () => ({
 export function addNewInvoiceAction(invoice) {
   return async (dispatch) => {
     await AxiosClient.post("/invoices", invoice);
+    dispatch(addNewInvoice());
   };
 }
+
+const addNewInvoice = () => ({
+  type: ADD_NEW_INVOICE,
+});
 
 export function deleteInvoiceAction(invoice) {
   return async (dispatch) => {
     await AxiosClient.delete(`/invoices/${invoice.id}`);
+    dispatch(deleteInvoice());
   };
 }
+
+const deleteInvoice = () => ({
+  type: DELETE_INVOICE,
+});
 
 export function editExistingInvoiceAction(invoice) {
   return async (dispatch) => {
@@ -136,17 +147,13 @@ const deleteItem = (id) => ({
   payload: id,
 });
 
-export function filterInvoicesbyStatusAction(status) {
-  return async (dispatch) => {
-    dispatch(filterStatus(status));
-    dispatch(filterInvoices());
+export function filterInvoicesAction(invoices) {
+  return (dispatch) => {
+    dispatch(filterInvoices(invoices));
   };
 }
 
-const filterStatus = (status) => ({
-  type: FILTER_INVOICES_BY_STATUS,
-  payload: status,
-});
-const filterInvoices = () => ({
+const filterInvoices = (invoices) => ({
   type: FILTERED_INVOICES,
+  payload: invoices,
 });

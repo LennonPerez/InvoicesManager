@@ -2,6 +2,8 @@ import {
   GET_INVOICES,
   OPEN_FORM,
   CLOSE_FORM,
+  ADD_NEW_INVOICE,
+  DELETE_INVOICE,
   SELECT_INVOICE,
   SELECT_INVOICE_EDIT,
   EDIT_EXISTING_INVOICE,
@@ -9,13 +11,13 @@ import {
   CHANGE_INVOICE_STATUS,
   ADD_ITEM_TO_ITEMS,
   DELETE_ITEM,
-  FILTER_INVOICES_BY_STATUS,
   FILTERED_INVOICES,
 } from "../types/index";
 
 const initialState = {
   openform: false,
   invoices: [],
+  filtered: [],
   selectedinvoice: null,
   items: [],
   filter: [],
@@ -28,7 +30,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         invoices: action.payload,
-        items: [],
       };
     case OPEN_FORM:
       return {
@@ -39,6 +40,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         openform: false,
+        items: [],
+      };
+    case ADD_NEW_INVOICE:
+    case DELETE_INVOICE:
+      return {
+        ...state,
+        selectedinvoice: null,
       };
     case SELECT_INVOICE:
     case EDIT_EXISTING_INVOICE:
@@ -67,17 +75,10 @@ export default function (state = initialState, action) {
         ...state,
         items: state.items.filter((item) => action.payload !== item.id),
       };
-    case FILTER_INVOICES_BY_STATUS:
-      return {
-        ...state,
-        filter: action.payload,
-      };
     case FILTERED_INVOICES:
       return {
         ...state,
-        invoices: state.invoices.filter((invoice) =>
-          invoice.status.includes(state.filter)
-        ),
+        filtered: action.payload,
       };
     default:
       return state;

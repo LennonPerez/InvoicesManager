@@ -332,6 +332,9 @@
       &:hover {
         background: #9277ff;
       }
+      @media (min-width: 768px) {
+        margin-right: 0;
+      }
     }
     .pending {
       color: white !important;

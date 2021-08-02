@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
   openFormAction,
-  filterInvoicesbyStatusAction,
+  filterInvoicesAction,
 } from "../actions/InvoicesActions";
 
 const InvoicesBar = () => {
-  const { invoices, filter } = useSelector((state) => state.invoices);
+  let filtered = [];
+  const invoices = useSelector((state) => state.invoices.invoices);
   const dispatch = useDispatch();
 
   const openForm = () => {
@@ -13,12 +14,19 @@ const InvoicesBar = () => {
   };
 
   const readFilter = (e) => {
-    if (filter.includes(e.target.id)) {
-      filter.filter((fil) => fil !== e.target.id);
+    if (e.target.checked) {
+      filtered = filtered.concat(
+        invoices.filter((invoice) => invoice.status === e.target.id)
+      );
     } else {
-      filter.push(e.target.id);
+      for (let i = 0; i < filtered.length; i++) {
+        if (filtered[i].status === e.target.id) {
+          filtered.splice(i, 1);
+          i--;
+        }
+      }
     }
-    dispatch(filterInvoicesbyStatusAction(filter));
+    dispatch(filterInvoicesAction(filtered));
   };
 
   const openFilter = () => {
@@ -41,9 +49,8 @@ const InvoicesBar = () => {
         <h2>Invoices</h2>
         {invoices.length > 0 ? (
           <p>
-            {window.innerWidth > 768 ? "There are " : null}
-            {invoices.length} {window.innerWidth > 768 ? "total " : null}{" "}
-            invoices
+            {window.innerWidth > 768 && "There are "}
+            {invoices.length} {window.innerWidth > 768 && "total "} invoices
           </p>
         ) : (
           <p>No invoices</p>
@@ -52,7 +59,7 @@ const InvoicesBar = () => {
       <ul className="filter-box">
         <li>
           <button onClick={openFilter}>
-            Filter {window.innerWidth > 768 ? "by status" : null}
+            Filter {window.innerWidth > 768 && "by status"}
             <span className="arrow"></span>
           </button>
 
@@ -77,7 +84,7 @@ const InvoicesBar = () => {
       </ul>
       <div className="button-box">
         <button type="button" onClick={openForm}>
-          New {window.innerWidth > 768 ? "Invoice" : null}
+          New {window.innerWidth > 768 && "Invoice"}
         </button>
       </div>
     </div>

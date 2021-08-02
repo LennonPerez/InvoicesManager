@@ -2092,6 +2092,12 @@
   background: #9277ff;
 }
 
+@media (min-width: 768px) {
+  .container .footer-details .paid {
+    margin-right: 0;
+  }
+}
+
 .container .footer-details .pending {
   color: white !important;
   background: var(--btndraft);
@@ -2225,6 +2231,8 @@
 
 .modal p span {
   text-transform: uppercase;
+  color: #7c5dfa;
+  font-weight: 600;
 }
 
 .modal div {

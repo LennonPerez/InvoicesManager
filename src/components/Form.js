@@ -17,29 +17,29 @@ const Form = () => {
   );
   const [newinvoice, setNewInvoice] = useState({
     clientAddress: {
-      city: selectedinvoice ? selectedinvoice.clientAddress.city : null,
-      country: selectedinvoice ? selectedinvoice.clientAddress.country : null,
-      postCode: selectedinvoice ? selectedinvoice.clientAddress.postCode : null,
-      street: selectedinvoice ? selectedinvoice.clientAddress.street : null,
+      city: selectedinvoice ? selectedinvoice.clientAddress.city : "",
+      country: selectedinvoice ? selectedinvoice.clientAddress.country : "",
+      postCode: selectedinvoice ? selectedinvoice.clientAddress.postCode : "",
+      street: selectedinvoice ? selectedinvoice.clientAddress.street : "",
     },
     senderAddress: {
-      city: selectedinvoice ? selectedinvoice.senderAddress.city : null,
-      country: selectedinvoice ? selectedinvoice.senderAddress.country : null,
-      postCode: selectedinvoice ? selectedinvoice.senderAddress.postCode : null,
-      street: selectedinvoice ? selectedinvoice.senderAddress.street : null,
+      city: selectedinvoice ? selectedinvoice.senderAddress.city : "",
+      country: selectedinvoice ? selectedinvoice.senderAddress.country : "",
+      postCode: selectedinvoice ? selectedinvoice.senderAddress.postCode : "",
+      street: selectedinvoice ? selectedinvoice.senderAddress.street : "",
     },
     items: selectedinvoice ? selectedinvoice.items : [],
-    clientEmail: selectedinvoice ? selectedinvoice.clientEmail : null,
-    clientName: selectedinvoice ? selectedinvoice.clientName : null,
-    createdAt: selectedinvoice ? selectedinvoice.createdAt : null,
-    description: selectedinvoice ? selectedinvoice.description : null,
-    paymentDue: selectedinvoice ? selectedinvoice.paymentDue : null,
-    paymentTerm: selectedinvoice ? selectedinvoice.paymentTerm : null,
+    clientEmail: selectedinvoice ? selectedinvoice.clientEmail : "",
+    clientName: selectedinvoice ? selectedinvoice.clientName : "",
+    createdAt: selectedinvoice ? selectedinvoice.createdAt : "",
+    description: selectedinvoice ? selectedinvoice.description : "",
+    paymentDue: selectedinvoice ? selectedinvoice.paymentDue : "",
+    paymentTerm: selectedinvoice ? selectedinvoice.paymentTerm : "",
     status: selectedinvoice ? selectedinvoice.status : "pending",
     total: selectedinvoice ? selectedinvoice.total : 0,
     id: selectedinvoice ? selectedinvoice.id : trimmedString,
   });
-  const { items, createdAt } = newinvoice;
+  const { clientAddress, senderAddress, items, createdAt } = newinvoice;
   const [term, setTerm] = useState(
     selectedinvoice ? selectedinvoice.paymentTerm : null
   );
@@ -150,37 +150,54 @@ const Form = () => {
       newinvoice.createdAt &&
       newinvoice.paymentTerm &&
       newinvoice.description &&
-      newinvoice.clientAddress.city &&
-      newinvoice.clientAddress.street &&
-      newinvoice.clientAddress.country &&
-      newinvoice.clientAddress.postCode &&
-      newinvoice.senderAddress.city &&
-      newinvoice.senderAddress.street &&
-      newinvoice.senderAddress.country &&
-      newinvoice.senderAddress.postCode &&
-      newinvoice.items.length > 0
+      clientAddress.city &&
+      clientAddress.street &&
+      clientAddress.country &&
+      clientAddress.postCode &&
+      senderAddress.city &&
+      senderAddress.street &&
+      senderAddress.country &&
+      senderAddress.postCode &&
+      items.length > 0
     ) {
       if (selectedinvoice) {
         dispatch(editExistingInvoiceAction(newinvoice));
       } else {
         dispatch(addNewInvoiceAction(newinvoice));
       }
-      dispatch(getInvoiceAction());
       CloseForm();
+      dispatch(getInvoiceAction());
     } else if (newinvoice.status === "draft") {
       if (selectedinvoice) {
         dispatch(editExistingInvoiceAction(newinvoice));
       } else {
         dispatch(addNewInvoiceAction(newinvoice));
       }
-      dispatch(getInvoiceAction());
       CloseForm();
     } else {
-      setFormError(true);
-      inputError(true);
+      if (
+        !newinvoice.clientEmail ||
+        !newinvoice.clientName ||
+        !newinvoice.createdAt ||
+        !newinvoice.paymentTerm ||
+        !newinvoice.description ||
+        !clientAddress.city ||
+        !clientAddress.street ||
+        !clientAddress.country ||
+        !clientAddress.postCode ||
+        !senderAddress.city ||
+        !senderAddress.street ||
+        !senderAddress.country ||
+        !senderAddress.postCode
+      ) {
+        setFormError(true);
+      } else {
+        setFormError(false);
+      }
       if (invoiceitems.length === 0) {
         setFormError2(true);
       }
+      inputError(true);
     }
     dispatch(getInvoiceAction());
   };
@@ -234,7 +251,7 @@ const Form = () => {
                 name="street"
                 className="forminput"
                 onChange={readSenderAddress}
-                value={newinvoice.senderAddress.street}
+                value={senderAddress.street}
               />
               <div>
                 <div>
@@ -244,7 +261,7 @@ const Form = () => {
                     name="city"
                     className="forminput"
                     onChange={readSenderAddress}
-                    value={newinvoice.senderAddress.city}
+                    value={senderAddress.city}
                   />
                 </div>
                 <div>
@@ -254,7 +271,7 @@ const Form = () => {
                     name="postCode"
                     className="forminput"
                     onChange={readSenderAddress}
-                    value={newinvoice.senderAddress.postCode}
+                    value={senderAddress.postCode}
                   />
                 </div>
                 <div className="country">
@@ -264,7 +281,7 @@ const Form = () => {
                     name="country"
                     className="forminput"
                     onChange={readSenderAddress}
-                    value={newinvoice.senderAddress.country}
+                    value={senderAddress.country}
                   />
                 </div>
               </div>
@@ -293,7 +310,7 @@ const Form = () => {
                 name="street"
                 className="forminput"
                 onChange={readClientAddress}
-                value={newinvoice.clientAddress.street}
+                value={clientAddress.street}
               />
               <div>
                 <div>
@@ -303,7 +320,7 @@ const Form = () => {
                     name="city"
                     className="forminput"
                     onChange={readClientAddress}
-                    value={newinvoice.clientAddress.city}
+                    value={clientAddress.city}
                   />
                 </div>
                 <div>
@@ -313,7 +330,7 @@ const Form = () => {
                     name="postCode"
                     className="forminput"
                     onChange={readClientAddress}
-                    value={newinvoice.clientAddress.postCode}
+                    value={clientAddress.postCode}
                   />
                 </div>
                 <div className="country">
@@ -323,7 +340,7 @@ const Form = () => {
                     name="country"
                     className="forminput"
                     onChange={readClientAddress}
-                    value={newinvoice.clientAddress.country}
+                    value={clientAddress.country}
                   />
                 </div>
               </div>
@@ -336,7 +353,7 @@ const Form = () => {
                   name="createdAt"
                   className="forminput"
                   onChange={readInput}
-                  value={newinvoice.createdAt}
+                  value={createdAt}
                   // disabled={selectedinvoice ? true : false}
                   // style={selectedinvoice ? { opacity: "0.5" } : null}
                 />

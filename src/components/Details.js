@@ -119,9 +119,9 @@ const Details = () => {
           <div className="payment">
             <div>
               <p>Invoice Date</p>
-              <h4>{createdAt === null ? "" : dateFomater(createdAt)}</h4>
+              <h4>{createdAt === "" ? "" : dateFomater(createdAt)}</h4>
               <p>Payment Due</p>
-              <h4>{paymentDue === null ? "" : dateFomater(paymentDue)}</h4>
+              <h4>{paymentDue === "" ? "" : dateFomater(paymentDue)}</h4>
             </div>
             <div>
               <p>Bill to</p>

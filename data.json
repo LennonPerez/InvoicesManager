@@ -278,7 +278,7 @@
       "description": "invoiceApp",
       "paymentDue": "2021-08-21T00:00:00.000Z",
       "paymentTerm": 30,
-      "status": "pending",
+      "status": "paid",
       "total": 1317.25,
       "id": "c706b7"
     },
