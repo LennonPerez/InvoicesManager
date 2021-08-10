@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Modal from "./Modal";
 import { v4 as uuidv4 } from "uuid";
 import {
   selectInvoiceEditAction,
   selectInvoiceAction,
+  resetSelectedInvoiceAction,
   changeInvoiceStatusAction,
   openFormAction,
 } from "../actions/InvoicesActions";
 
 const Details = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const invoice = useParams();
 
   const history = useHistory();
 
@@ -20,6 +23,13 @@ const Details = () => {
   const selectedinvoice = useSelector(
     (state) => state.invoices.selectedinvoice
   );
+
+  useEffect(() => {
+    dispatch(selectInvoiceAction(invoice.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!selectedinvoice) return null;
 
   const {
     status,
@@ -37,7 +47,7 @@ const Details = () => {
 
   const returnToHome = () => {
     history.push("/");
-    dispatch(selectInvoiceAction(null));
+    dispatch(resetSelectedInvoiceAction());
   };
 
   const openEdit = () => {

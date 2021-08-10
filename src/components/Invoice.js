@@ -20,7 +20,7 @@ const Invoice = ({ invoice }) => {
 
   const getInvoice = (invoice) => {
     history.push(`/details/${invoice.id}`);
-    dispatch(selectInvoiceAction(invoice));
+    dispatch(selectInvoiceAction(invoice.id));
   };
 
   return (

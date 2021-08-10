@@ -15,12 +15,12 @@ import {
 } from "../types/index";
 
 const initialState = {
-  openform: false,
   invoices: [],
-  filtered: [],
   selectedinvoice: null,
+  openform: false,
   items: [],
   filter: [],
+  filtered: [],
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export

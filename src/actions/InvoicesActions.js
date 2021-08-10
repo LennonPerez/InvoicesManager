@@ -48,9 +48,11 @@ const closeForm = () => ({
   type: CLOSE_FORM,
 });
 
-export function selectInvoiceAction(invoice) {
-  return (dispatch) => {
-    dispatch(selectInvoice(invoice));
+export function selectInvoiceAction(id) {
+  return async (dispatch) => {
+    if (!id) return null;
+    const invoice = await AxiosClient.get(`invoices/${id}`);
+    dispatch(selectInvoice(invoice.data));
   };
 }
 
