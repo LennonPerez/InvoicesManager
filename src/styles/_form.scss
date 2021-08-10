@@ -1,16 +1,21 @@
 @import "variables";
 
 @keyframes form-animation {
+  0% {
+    transform: translateX(-100%);
+  }
   100% {
-    left: 0;
+    transform: translateX(0);
   }
 }
 @keyframes form-animation-1440 {
+  0% {
+    transform: translateX(-100%);
+  }
   100% {
-    left: 6rem;
+    transform: translateX(6rem);
   }
 }
-
 .bar-container {
   .edit-container {
     background-color: var(--bg);
@@ -18,24 +23,20 @@
     height: 100%;
     position: absolute;
     top: 5rem;
-    left: -10rem;
     animation: form-animation 0.5s ease forwards;
     z-index: 3;
     padding-bottom: 5rem;
     @media (min-width: 768px) {
       width: 75%;
-      left: -15rem;
       padding: 3rem 3% 5rem 3%;
       transform: none;
       border-radius: 0 20px 20px 0;
     }
     @media (min-width: 1440px) {
       top: 0;
-      left: -20rem;
       width: 50%;
       padding-bottom: 0;
       animation: form-animation-1440 0.5s ease forwards;
-      // padding: 0 15% 0 calc(15% + 6rem);
     }
     .container {
       position: relative;
@@ -278,6 +279,9 @@
             margin: calc(1rem - 2px) 0;
             cursor: pointer;
           }
+          input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+          }
           border-radius: 10px;
           cursor: pointer;
           border: 2px solid var(--bg);
@@ -417,12 +421,9 @@
           }
         }
         @media (min-width: 768px) {
-          margin: 0.5rem 0 8rem 0;
+          margin: 0.5rem 0 0 0;
           color: var(--pcolor);
           height: 3.25rem;
-        }
-        @media (min-width: 1440px) {
-          margin: 0.5rem 0 0 0;
         }
       }
       .errors {
@@ -434,9 +435,6 @@
           justify-content: space-between;
           flex-direction: row;
           left: 0;
-          bottom: 14vh;
-        }
-        @media (min-width: 1440px) {
           bottom: 0;
         }
         .formerror,
@@ -468,20 +466,14 @@
         box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.1);
         @media (min-width: 768px) {
           border-radius: 0 0 20px 0;
-          padding: 0 8.5%;
-          position: fixed;
-          bottom: 0;
-          left: -15rem;
-          width: 75%;
-          animation: form-animation 0.5s ease forwards;
+          padding: 0;
+          background: none;
+          width: 100%;
+          box-shadow: none;
         }
         @media (min-width: 1440px) {
-          border-radius: 0 0 20px 0;
-          box-shadow: none;
-          background: none;
-          position: relative;
           padding: 0;
-          width: 100%;
+          animation: form-animation 0.5s ease forwards;
         }
         .draft {
           background-color: var(--btndraft);
