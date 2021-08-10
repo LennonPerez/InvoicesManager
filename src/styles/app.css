@@ -2176,14 +2176,24 @@
 }
 
 @-webkit-keyframes modal-animation {
+  0% {
+    top: 80%;
+    opacity: 0;
+  }
   100% {
     top: 50%;
+    opacity: 1;
   }
 }
 
 @keyframes modal-animation {
+  0% {
+    top: 80%;
+    opacity: 0;
+  }
   100% {
     top: 50%;
+    opacity: 1;
   }
 }
 
@@ -2202,7 +2212,6 @@
   z-index: 1000;
   position: fixed;
   left: 50%;
-  top: 70%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   width: 90%;
