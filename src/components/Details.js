@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import Modal from "./Modal";
 import { v4 as uuidv4 } from "uuid";
+import Modal from "./Modal";
 import {
   selectInvoiceEditAction,
   selectInvoiceAction,
