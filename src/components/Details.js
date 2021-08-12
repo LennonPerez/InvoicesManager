@@ -60,13 +60,6 @@ const Details = () => {
     currency: "GBP",
   });
 
-  const dateFomater = (date) => {
-    const day = new Date(date).getDate();
-    const month = new Date(date).getMonth() + 1;
-    const year = new Date(date).getFullYear();
-    return `${day}-${month}-${year}`;
-  };
-
   const markAsPaid = () => {
     selectedinvoice.status = "paid";
     dispatch(editExistingInvoiceAction(selectedinvoice));
@@ -129,9 +122,9 @@ const Details = () => {
           <div className="payment">
             <div>
               <p>Invoice Date</p>
-              <h4>{createdAtt === "" ? "" : dateFomater(createdAtt)}</h4>
+              <h4>{createdAtt === "" ? "" : createdAtt}</h4>
               <p>Payment Due</p>
-              <h4>{paymentDue === "" ? "" : dateFomater(paymentDue)}</h4>
+              <h4>{paymentDue === "" ? "" : paymentDue}</h4>
             </div>
             <div>
               <p>Bill to</p>

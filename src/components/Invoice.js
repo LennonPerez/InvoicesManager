@@ -8,13 +8,6 @@ const Invoice = ({ invoice }) => {
     currency: "GBP",
   });
 
-  const dateFomater = (date) => {
-    const day = new Date(date).getDate() + 1;
-    const month = new Date(date).getMonth() + 1;
-    const year = new Date(date).getFullYear();
-    return `${day}-${month}-${year}`;
-  };
-
   const getInvoice = (invoice) => {
     history.push(`/details/${invoice.uid}`);
   };
@@ -34,10 +27,7 @@ const Invoice = ({ invoice }) => {
       </div>
       <div className="half bottom">
         <div>
-          <p>
-            Due{" "}
-            {invoice.paymentDue === "" ? "" : dateFomater(invoice.paymentDue)}
-          </p>
+          <p>Due {invoice.paymentDue === "" ? "" : invoice.paymentDue}</p>
           <h3>{formatter.format(invoice.total)}</h3>
         </div>
         <div>

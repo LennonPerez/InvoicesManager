@@ -862,10 +862,17 @@
 .bar-container .edit-container .container .errors .formerror2 {
   color: red;
   font-weight: 500;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   opacity: 0;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .bar-container .edit-container .container .errors .formerror,
+  .bar-container .edit-container .container .errors .formerror2 {
+    padding-block: 1rem;
+  }
 }
 
 .bar-container .edit-container .container .errorform {
@@ -876,7 +883,7 @@
 }
 
 .bar-container .edit-container .container .edit-footer {
-  background-color: var(--elbg);
+  background-color: var(--bg);
   width: 100%;
   height: 5rem;
   display: -webkit-box;
@@ -889,15 +896,11 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 0 5%;
-  -webkit-box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 768px) {
   .bar-container .edit-container .container .edit-footer {
     border-radius: 0 0 20px 0;
-    padding: 0;
     background: none;
     width: 100%;
     -webkit-box-shadow: none;
@@ -911,16 +914,6 @@
     -webkit-animation: form-animation 0.5s ease forwards;
             animation: form-animation 0.5s ease forwards;
   }
-}
-
-.bar-container .edit-container .container .edit-footer .draft {
-  background-color: var(--btndraft);
-  margin-right: 0.5rem;
-}
-
-.bar-container .edit-container .container .edit-footer .draft:hover {
-  background: #dfe3fa;
-  color: #9277ff;
 }
 
 .bar-container .edit-container .container .edit-footer button {
@@ -959,6 +952,17 @@
   .bar-container .edit-container .container .edit-footer button:first-child {
     margin-right: auto;
   }
+}
+
+.bar-container .edit-container .container .edit-footer .draft {
+  background-color: var(--btndraft);
+  margin-right: 0.5rem;
+  color: #fff !important;
+}
+
+.bar-container .edit-container .container .edit-footer .draft:hover {
+  background: #dfe3fa;
+  color: #9277ff !important;
 }
 
 .transparent-background-form {

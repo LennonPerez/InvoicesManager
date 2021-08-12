@@ -11,6 +11,7 @@ import {
 
 const Form = () => {
   const dispatch = useDispatch();
+  const date = new Date();
   const trimmedString = uuidv4().substring(0, 6);
   const selectedinvoice = useSelector(
     (state) => state.invoices.selectedinvoice
@@ -31,9 +32,9 @@ const Form = () => {
     items: selectedinvoice ? selectedinvoice.items : [],
     clientEmail: selectedinvoice ? selectedinvoice.clientEmail : "",
     clientName: selectedinvoice ? selectedinvoice.clientName : "",
-    createdAtt: selectedinvoice ? selectedinvoice.createdAtt : "",
+    createdAtt: selectedinvoice ? selectedinvoice.createdAtt : date,
     description: selectedinvoice ? selectedinvoice.description : "",
-    paymentDue: selectedinvoice ? selectedinvoice.paymentDue : "",
+    paymentDue: selectedinvoice ? selectedinvoice.paymentDue : date,
     paymentTerm: selectedinvoice ? selectedinvoice.paymentTerm : 0,
     status: selectedinvoice ? selectedinvoice.status : "pending",
     total: selectedinvoice ? selectedinvoice.total : 0,
@@ -170,7 +171,7 @@ const Form = () => {
       if (selectedinvoice) {
         await dispatch(editExistingInvoiceAction(newinvoice));
       } else {
-       await dispatch(addNewInvoiceAction(newinvoice));
+        await dispatch(addNewInvoiceAction(newinvoice));
       }
       CloseForm();
     } else {
@@ -198,8 +199,7 @@ const Form = () => {
       }
       inputError(true);
     }
-    console.log(newinvoice);
-   await dispatch(getInvoiceAction());
+    await dispatch(getInvoiceAction());
   };
 
   const inputError = (bool) => {
@@ -214,7 +214,7 @@ const Form = () => {
         i.previousElementSibling.classList.remove("labelerror");
       }
     });
-    if (term === null && bool === true) {
+    if (term === 0 && bool === true) {
       terms.classList.add("bordererror");
       terms.parentElement.previousElementSibling.classList.add("labelerror");
     } else {

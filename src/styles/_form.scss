@@ -25,7 +25,7 @@
     top: 5rem;
     animation: form-animation 0.5s ease forwards;
     z-index: 3;
-    // padding-bottom: 5rem;
+    padding-bottom: 5rem;
     @media (min-width: 768px) {
       width: 75%;
       padding: 3rem 3% 5rem 3%;
@@ -441,9 +441,12 @@
         .formerror2 {
           color: red;
           font-weight: 500;
-          padding: 1rem 0;
+          padding: 0.5rem 0;
           opacity: 0;
           transition: opacity 0.3s ease;
+          @media (min-width: 768px) {
+            padding-block: 1rem;
+          }
         }
       }
       .errorform {
@@ -453,20 +456,18 @@
         display: none;
       }
       .edit-footer {
-        background-color: var(--elbg);
+        background-color: var(--bg);
         width: 100%;
         height: 5rem;
         display: flex;
         align-items: center;
         position: relative;
         justify-content: flex-end;
-        padding: 0 5%;
-        -webkit-box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.1);
-        box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.1);
+        // -webkit-box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.1);
+        // -moz-box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.1);
+        // box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.1);
         @media (min-width: 768px) {
           border-radius: 0 0 20px 0;
-          padding: 0;
           background: none;
           width: 100%;
           box-shadow: none;
@@ -474,14 +475,6 @@
         @media (min-width: 1440px) {
           padding: 0;
           animation: form-animation 0.5s ease forwards;
-        }
-        .draft {
-          background-color: var(--btndraft);
-          margin-right: 0.5rem;
-          &:hover {
-            background: #dfe3fa;
-            color: #9277ff;
-          }
         }
         button {
           cursor: pointer;
@@ -510,6 +503,15 @@
             @media (min-width: 768px) {
               margin-right: auto;
             }
+          }
+        }
+        .draft {
+          background-color: var(--btndraft);
+          margin-right: 0.5rem;
+          color: #fff !important;
+          &:hover {
+            background: #dfe3fa;
+            color: #9277ff !important;
           }
         }
       }
