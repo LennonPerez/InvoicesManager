@@ -8,7 +8,6 @@ import {
   SELECT_INVOICE_EDIT,
   EDIT_EXISTING_INVOICE,
   RESET_SELECTED_INVOICE,
-  CHANGE_INVOICE_STATUS,
   ADD_ITEM_TO_ITEMS,
   DELETE_ITEM,
   FILTERED_INVOICES,
@@ -50,7 +49,6 @@ export default function (state = initialState, action) {
       };
     case SELECT_INVOICE:
     case EDIT_EXISTING_INVOICE:
-    case CHANGE_INVOICE_STATUS:
       return {
         ...state,
         selectedinvoice: action.payload,

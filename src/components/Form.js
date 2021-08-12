@@ -31,17 +31,18 @@ const Form = () => {
     items: selectedinvoice ? selectedinvoice.items : [],
     clientEmail: selectedinvoice ? selectedinvoice.clientEmail : "",
     clientName: selectedinvoice ? selectedinvoice.clientName : "",
-    createdAt: selectedinvoice ? selectedinvoice.createdAt : "",
+    createdAtt: selectedinvoice ? selectedinvoice.createdAtt : "",
     description: selectedinvoice ? selectedinvoice.description : "",
     paymentDue: selectedinvoice ? selectedinvoice.paymentDue : "",
-    paymentTerm: selectedinvoice ? selectedinvoice.paymentTerm : "",
+    paymentTerm: selectedinvoice ? selectedinvoice.paymentTerm : 0,
     status: selectedinvoice ? selectedinvoice.status : "pending",
     total: selectedinvoice ? selectedinvoice.total : 0,
-    id: selectedinvoice ? selectedinvoice.id : trimmedString,
+    uid: selectedinvoice ? selectedinvoice.uid : trimmedString,
+    id: selectedinvoice && selectedinvoice.id,
   });
-  const { clientAddress, senderAddress, items, createdAt } = newinvoice;
+  const { clientAddress, senderAddress, items, createdAtt } = newinvoice;
   const [term, setTerm] = useState(
-    selectedinvoice ? selectedinvoice.paymentTerm : null
+    selectedinvoice ? selectedinvoice.paymentTerm : 0
   );
   const [formerror, setFormError] = useState(false);
   const [formerror2, setFormError2] = useState(false);
@@ -101,16 +102,14 @@ const Form = () => {
   };
 
   const getPaymentDue = () => {
-    const createdat = newinvoice.createdAt;
+    const date = new Date(newinvoice.createdAtt);
+    const newDate = addDays(date, term);
 
     function addDays(date, days) {
       const copy = new Date(Number(date));
       copy.setDate(date.getDate() + days);
       return copy;
     }
-
-    const date = new Date(createdat);
-    const newDate = addDays(date, term);
 
     setNewInvoice({
       ...newinvoice,
@@ -134,7 +133,7 @@ const Form = () => {
   useEffect(() => {
     getPaymentDue();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [term, createdAt]);
+  }, [term, createdAtt]);
 
   useEffect(() => {
     readItems();
@@ -142,12 +141,12 @@ const Form = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [invoiceitems, items]);
 
-  const addNewInvoice = (e) => {
+  const addNewInvoice = async (e) => {
     e.preventDefault();
     if (
       newinvoice.clientEmail &&
       newinvoice.clientName &&
-      newinvoice.createdAt &&
+      newinvoice.createdAtt &&
       newinvoice.paymentTerm &&
       newinvoice.description &&
       clientAddress.city &&
@@ -161,24 +160,24 @@ const Form = () => {
       items.length > 0
     ) {
       if (selectedinvoice) {
-        dispatch(editExistingInvoiceAction(newinvoice));
+        await dispatch(editExistingInvoiceAction(newinvoice));
       } else {
-        dispatch(addNewInvoiceAction(newinvoice));
+        await dispatch(addNewInvoiceAction(newinvoice));
       }
       CloseForm();
       dispatch(getInvoiceAction());
     } else if (newinvoice.status === "draft") {
       if (selectedinvoice) {
-        dispatch(editExistingInvoiceAction(newinvoice));
+        await dispatch(editExistingInvoiceAction(newinvoice));
       } else {
-        dispatch(addNewInvoiceAction(newinvoice));
+       await dispatch(addNewInvoiceAction(newinvoice));
       }
       CloseForm();
     } else {
       if (
         !newinvoice.clientEmail ||
         !newinvoice.clientName ||
-        !newinvoice.createdAt ||
+        !newinvoice.createdAtt ||
         !newinvoice.paymentTerm ||
         !newinvoice.description ||
         !clientAddress.city ||
@@ -199,7 +198,8 @@ const Form = () => {
       }
       inputError(true);
     }
-    dispatch(getInvoiceAction());
+    console.log(newinvoice);
+   await dispatch(getInvoiceAction());
   };
 
   const inputError = (bool) => {
@@ -237,7 +237,7 @@ const Form = () => {
           {selectedinvoice ? (
             <h2>
               Edit <span>#</span>
-              <span>{selectedinvoice.id}</span>
+              <span>{selectedinvoice.uid}</span>
             </h2>
           ) : (
             <h2 style={{ textTransform: "capitalize" }}>New Invoice</h2>
@@ -350,10 +350,10 @@ const Form = () => {
                 <label>Invoice Date</label>
                 <input
                   type="date"
-                  name="createdAt"
+                  name="createdAtt"
                   className="forminput"
                   onChange={readInput}
-                  value={createdAt}
+                  value={createdAtt}
                   // disabled={selectedinvoice ? true : false}
                   // style={selectedinvoice ? { opacity: "0.5" } : null}
                 />
@@ -362,7 +362,9 @@ const Form = () => {
                 <label>Payment Terms</label>
                 <ul className="terms" onClick={openTerms}>
                   <li>
-                    {term ? "Net " + term + " Days" : "Select a Payment Term"}
+                    {term !== 0
+                      ? "Net " + term + " Days"
+                      : "Select a Payment Term"}
                     <span className="arrow2"></span>
                     <ul className="hiddenmenu2">
                       <li onClick={(e) => setTerm(1)}>Net 1 Day</li>

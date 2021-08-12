@@ -1,10 +1,7 @@
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { selectInvoiceAction } from "../actions/InvoicesActions";
 
 const Invoice = ({ invoice }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -19,20 +16,19 @@ const Invoice = ({ invoice }) => {
   };
 
   const getInvoice = (invoice) => {
-    history.push(`/details/${invoice.id}`);
-    dispatch(selectInvoiceAction(invoice.id));
+    history.push(`/details/${invoice.uid}`);
   };
 
   return (
     <div
       className="invoice-container"
-      key={invoice.id}
+      key={invoice.uid}
       onClick={() => getInvoice(invoice)}
     >
       <div className="half head">
         <h3>
           <span>#</span>
-          {invoice.id}
+          {invoice.uid}
         </h3>
         <p>{invoice.clientName}</p>
       </div>

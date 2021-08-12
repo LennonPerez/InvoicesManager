@@ -8,7 +8,6 @@ import {
   SELECT_INVOICE_EDIT,
   EDIT_EXISTING_INVOICE,
   RESET_SELECTED_INVOICE,
-  CHANGE_INVOICE_STATUS,
   ADD_ITEM_TO_ITEMS,
   DELETE_ITEM,
   FILTERED_INVOICES,
@@ -18,7 +17,7 @@ import AxiosClient from "../config/axios";
 export function getInvoiceAction() {
   return async (dispatch) => {
     //get all the invoices from the data base
-    const invoices = await AxiosClient.get("/invoices");
+    const invoices = await AxiosClient.get();
     dispatch(getInvoices(invoices.data));
   };
 }
@@ -51,8 +50,9 @@ const closeForm = () => ({
 export function selectInvoiceAction(id) {
   return async (dispatch) => {
     if (!id) return null;
-    const invoice = await AxiosClient.get(`invoices/${id}`);
-    dispatch(selectInvoice(invoice.data));
+    const invoices = await AxiosClient.get();
+    const invoice = invoices.data.filter((invoice) => invoice.uid === id)[0];
+    dispatch(selectInvoice(invoice));
   };
 }
 
@@ -83,7 +83,7 @@ const resetSelectedInvoice = () => ({
 
 export function addNewInvoiceAction(invoice) {
   return async (dispatch) => {
-    await AxiosClient.post("/invoices", invoice);
+    await AxiosClient.post("/", invoice);
     dispatch(addNewInvoice());
   };
 }
@@ -94,7 +94,7 @@ const addNewInvoice = () => ({
 
 export function deleteInvoiceAction(invoice) {
   return async (dispatch) => {
-    await AxiosClient.delete(`/invoices/${invoice.id}`);
+    await AxiosClient.delete(`/${invoice.id}`);
     dispatch(deleteInvoice());
   };
 }
@@ -105,25 +105,13 @@ const deleteInvoice = () => ({
 
 export function editExistingInvoiceAction(invoice) {
   return async (dispatch) => {
-    await AxiosClient.put(`/invoices/${invoice.id}`, invoice);
+    await AxiosClient.put(`/${invoice.id}`, invoice);
     dispatch(editExistingInvoice(invoice));
   };
 }
 
 const editExistingInvoice = (invoice) => ({
   type: EDIT_EXISTING_INVOICE,
-  payload: invoice,
-});
-
-export function changeInvoiceStatusAction(invoice) {
-  return async (dispatch) => {
-    await AxiosClient.put(`/invoices/${invoice.id}`, invoice);
-    dispatch(changeInvoiceStatus(invoice));
-  };
-}
-
-const changeInvoiceStatus = (invoice) => ({
-  type: CHANGE_INVOICE_STATUS,
   payload: invoice,
 });
 

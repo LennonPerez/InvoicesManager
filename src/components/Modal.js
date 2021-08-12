@@ -10,10 +10,10 @@ const Modal = ({ open, children, onClose, selectedinvoice }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const deleteInvoice = (invoice) => {
-    dispatch(deleteInvoiceAction(invoice));
-    dispatch(getInvoiceAction());
+  const deleteInvoice = async (invoice) => {
+    await dispatch(deleteInvoiceAction(invoice));
     history.push("/");
+    await dispatch(getInvoiceAction());
   };
 
   if (!open) return null;

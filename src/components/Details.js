@@ -7,7 +7,7 @@ import {
   selectInvoiceEditAction,
   selectInvoiceAction,
   resetSelectedInvoiceAction,
-  changeInvoiceStatusAction,
+  editExistingInvoiceAction,
   openFormAction,
 } from "../actions/InvoicesActions";
 
@@ -33,10 +33,10 @@ const Details = () => {
 
   const {
     status,
-    id,
+    uid,
     description,
     senderAddress,
-    createdAt,
+    createdAtt,
     clientName,
     clientAddress,
     paymentDue,
@@ -61,7 +61,7 @@ const Details = () => {
   });
 
   const dateFomater = (date) => {
-    const day = new Date(date).getDate() + 1;
+    const day = new Date(date).getDate();
     const month = new Date(date).getMonth() + 1;
     const year = new Date(date).getFullYear();
     return `${day}-${month}-${year}`;
@@ -69,8 +69,8 @@ const Details = () => {
 
   const markAsPaid = () => {
     selectedinvoice.status = "paid";
-    dispatch(changeInvoiceStatusAction(selectedinvoice));
-    history.push(`/details/${id}`);
+    dispatch(editExistingInvoiceAction(selectedinvoice));
+    history.push(`/details/${uid}`);
   };
 
   const markAsPendient = () => {
@@ -78,7 +78,7 @@ const Details = () => {
     if (
       selectedinvoice.clientEmail &&
       selectedinvoice.clientName &&
-      selectedinvoice.createdAt &&
+      selectedinvoice.createdAtt &&
       selectedinvoice.paymentTerm &&
       selectedinvoice.description &&
       selectedinvoice.clientAddress.city &&
@@ -92,9 +92,9 @@ const Details = () => {
       selectedinvoice.items.length > 0
     ) {
       selectedinvoice.status = "pending";
-      dispatch(changeInvoiceStatusAction(selectedinvoice));
+      dispatch(editExistingInvoiceAction(selectedinvoice));
       error.style.opacity = "0";
-      history.push(`/details/${id}`);
+      history.push(`/details/${uid}`);
     } else {
       const btn = document.querySelector(".paid");
       btn.style.border = "2px solid red";
@@ -116,7 +116,7 @@ const Details = () => {
           <div>
             <h3>
               <span>#</span>
-              {id}
+              {uid}
             </h3>
             <p>{description}</p>
           </div>
@@ -129,7 +129,7 @@ const Details = () => {
           <div className="payment">
             <div>
               <p>Invoice Date</p>
-              <h4>{createdAt === "" ? "" : dateFomater(createdAt)}</h4>
+              <h4>{createdAtt === "" ? "" : dateFomater(createdAtt)}</h4>
               <p>Payment Due</p>
               <h4>{paymentDue === "" ? "" : dateFomater(paymentDue)}</h4>
             </div>
@@ -229,7 +229,7 @@ const Details = () => {
         >
           <h2>Confirm Deletion</h2>
           <p>
-            Are you sure you want to delete the invoice <span>#{id}</span>?,
+            Are you sure you want to delete the invoice <span>#{uid}</span>?,
             this action cannot be undone.
           </p>
         </Modal>
