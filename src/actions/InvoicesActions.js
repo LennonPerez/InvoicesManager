@@ -6,7 +6,6 @@ import {
   DELETE_INVOICE,
   SELECT_INVOICE,
   SELECT_INVOICE_EDIT,
-  EDIT_EXISTING_INVOICE,
   RESET_SELECTED_INVOICE,
   ADD_ITEM_TO_ITEMS,
   DELETE_ITEM,
@@ -106,14 +105,8 @@ const deleteInvoice = () => ({
 export function editExistingInvoiceAction(invoice) {
   return async (dispatch) => {
     await AxiosClient.put(`/${invoice.id}`, invoice);
-    dispatch(editExistingInvoice(invoice));
   };
 }
-
-const editExistingInvoice = (invoice) => ({
-  type: EDIT_EXISTING_INVOICE,
-  payload: invoice,
-});
 
 export function addNewItemAction(item) {
   return (dispatch) => {

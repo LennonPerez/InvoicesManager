@@ -27,7 +27,7 @@ const Details = () => {
   useEffect(() => {
     dispatch(selectInvoiceAction(invoice.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedinvoice]);
 
   if (!selectedinvoice) return null;
 
