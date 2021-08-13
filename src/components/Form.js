@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import ItemForm from "./ItemForm";
@@ -166,7 +166,6 @@ const Form = () => {
         await dispatch(addNewInvoiceAction(newinvoice));
       }
       CloseForm();
-      dispatch(getInvoiceAction());
     } else if (newinvoice.status === "draft") {
       if (selectedinvoice) {
         await dispatch(editExistingInvoiceAction(newinvoice));
@@ -224,7 +223,7 @@ const Form = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <form className="edit-container" onSubmit={addNewInvoice}>
         <div className="container">
           {window.innerWidth > 768 ? null : (
@@ -441,7 +440,7 @@ const Form = () => {
         className="transparent-background-form"
         onClick={() => CloseForm()}
       />
-    </Fragment>
+    </>
   );
 };
 

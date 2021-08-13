@@ -23,11 +23,14 @@ const Details = () => {
   const selectedinvoice = useSelector(
     (state) => state.invoices.selectedinvoice
   );
+  const formopen = useSelector((state) => state.invoices.openform);
 
   useEffect(() => {
-    dispatch(selectInvoiceAction(invoice.id));
+    if (!formopen) {
+      dispatch(selectInvoiceAction(invoice.id));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedinvoice]);
+  }, [formopen]);
 
   if (!selectedinvoice) return null;
 
